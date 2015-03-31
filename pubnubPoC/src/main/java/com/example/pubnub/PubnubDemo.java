@@ -12,14 +12,12 @@ import com.pubnub.api.Callback;
 
 public class PubnubDemo {
 	public static void main(String[] args) {
-		if(args.length < 1){
-			System.err.println("Pass argument as 'pub' or 'sub'");
-			System.exit(1);
-		}
 		PubSubService pubsubService = new PubSubServiceImpl();
 		System.out.println("Enter comma separated channel names to subscribe:");
 		String channel = readInput();
-		final FileLogger logger = new FileLogger("e:/pubnub_destination.csv");
+		String logFileName = System.getProperty("user.home")+"/pubnub_destination.csv";
+		System.out.println("Logging stats to "+ logFileName);
+		final FileLogger logger = new FileLogger(logFileName);
 		Callback callback = new Callback() {
 			@Override
 			public void connectCallback(String channel, Object msg) {
@@ -36,8 +34,7 @@ public class PubnubDemo {
 			@Override
 			public void successCallback(String channel, Object msg) {
 				logger.log(msg.toString());
-			}
-			
+			}			
 		};
 		pubsubService.subscribe(StringUtils.split(channel, ','), callback);
 
