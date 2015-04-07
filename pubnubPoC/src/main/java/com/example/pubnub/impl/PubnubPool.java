@@ -13,7 +13,7 @@ public class PubnubPool {
 	private PubnubPool(){
 		for(int i=0; i <POOL_MAX_SIZE; i++){
 			try {
-				PUBNUB_POOL.put(new Pubnub("pub-c-8a9b8d17-f888-40f4-98c7-e7a437a95bcd", "sub-c-cdfc92a8-a965-11e4-aa71-02ee2ddab7fe"));
+				PUBNUB_POOL.put(new Pubnub("xxxx", "xxxx"));
 			} catch (InterruptedException e) {
 				throw new RuntimeException(e);
 			}
